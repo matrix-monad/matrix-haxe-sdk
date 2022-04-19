@@ -1,6 +1,6 @@
 package test;
 
-import tink.http.Client.*;
+import tink.http.Client.fetch;
 import tink.http.Header.HeaderField;
 
 class Main {
@@ -10,11 +10,19 @@ class Main {
 		getUser(args[0], args[1]);
 	}
 
-	static function getUser(username: String, password: String) {
-		var body = '{"type":"m.login.password", "user":"$username", "password":"$password"}';
+	static function loginPassword(username: String, password: String) {
+		var body = '{
+			"type": "m.login.password",
+			"identifier": {
+				"type": "m.id.user",
+				"user": "$username"
+			},
+			"password": "$password"
+		}';
+		
 		tink.http.Client.fetch('https://matrix.org/_matrix/client/r0/login', {
 				method: POST,
-				headers: [new HeaderField(CONTENT_TYPE, 'application/json')],
+				headers: [new HeaderField(CONTENT_TYPE, 'application/json'), new HeaderField('content-length', Std.string(body.length))],
 				body: body,
 				}).all()
 		.handle(function(o) switch o {
