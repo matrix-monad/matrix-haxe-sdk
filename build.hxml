@@ -1,0 +1,20 @@
+-cp src/
+
+# Tink Libraries
+-cp vendor/tink_core/src
+-cp vendor/tink_http/src
+-cp vendor/tink_anon/src
+-cp vendor/tink_io/src
+-cp vendor/tink_url/src
+-cp vendor/tink_chunk/src
+-cp vendor/tink_streams/src
+-cp vendor/tink_stringly/src
+-cp vendor/tink_macro/src
+
+-cp vendor/http-status/src
+
+-D resourcesPath=assets/
+-D no-deprecation-warnings
+-hl out/hashlink/test.hl
+-main test.Main
+-debug

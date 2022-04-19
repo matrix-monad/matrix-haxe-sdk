@@ -1,0 +1,35 @@
+[submodule "vendor/tink_http"]
+	path = vendor/tink_http
+	url = https://github.com/haxetink/tink_http
+	branch = 0.10.0
+[submodule "vendor/tink_anon"]
+	path = vendor/tink_anon
+	url = https://github.com/haxetink/tink_anon
+	branch = 0.7.0
+[submodule "vendor/tink_io"]
+	path = vendor/tink_io
+	url = https://github.com/haxetink/tink_io
+	branch = 0.9.0
+[submodule "vendor/tink_url"]
+	path = vendor/tink_url
+	url = https://github.com/haxetink/tink_url
+	branch = 0.5.0
+[submodule "vendor/http-status"]
+	path = vendor/http-status
+	url = https://github.com/kevinresol/http-status
+[submodule "vendor/tink_core"]
+	path = vendor/tink_core
+	url = https://github.com/haxetink/tink_core
+	branch = 2.0.0-rc.3
+[submodule "vendor/tink_streams"]
+	path = vendor/tink_streams
+	url = https://github.com/haxetink/tink_streams
+	branch = 0.4.0
+[submodule "vendor/tink_stringly"]
+	path = vendor/tink_stringly
+	url = https://github.com/haxetink/tink_stringly
+	branch = 0.5.0
+[submodule "vendor/tink_macro"]
+	path = vendor/tink_macro
+	url = https://github.com/haxetink/tink_macro
+	branch = 0.24.0
