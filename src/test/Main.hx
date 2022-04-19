@@ -7,7 +7,7 @@ class Main {
 	static function main() {
 		var args = Sys.args();
 		var user = loginPassword(args[0], args[1]);
-		trace(user.user_id);
+		sendMessage(user, args[2], args[3]); // Room ID (second argument) should be the internal one which has an ! prefix
 	}
 
 	static function loginPassword(username: String, password: String): User {
@@ -33,6 +33,30 @@ class Main {
 			case Success(res):
 				var response_json = haxe.Json.parse(res.body.toString());
 				user = new User(response_json.user_id, response_json.access_token, response_json.home_server, response_json.device_id);
+			case Failure(e):
+				trace(e);
+		});
+
+		return user;
+	}
+
+	static function sendMessage(user: User, roomID: String, message: String): User {
+		var body = '{
+			"msgtype": "m.text", 
+			"body": "$message"
+		}';
+
+		tink.http.Client.fetch('https://matrix.org/_matrix/client/r0/rooms/!$roomID:matrix.org/send/m.room.message?access_token=${user.access_token}', {
+				method: POST,
+				headers: [
+					new HeaderField(CONTENT_TYPE, 'application/json'), 
+					new HeaderField('content-length', Std.string(body.length))
+				],
+				body: body,
+				}).all()
+		.handle(function(o) switch o {
+			case Success(res):
+				trace(res.body.toString());
 			case Failure(e):
 				trace(e);
 		});
