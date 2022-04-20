@@ -48,10 +48,10 @@ abstract RoomOptions(Dynamic) from Dynamic {
 	public var version(get, never):String;
 	public function get_version() {
 		return if (Reflect.hasField(this, "room_version"))  Reflect.field(this, "room_version") else "1";
+	}
 
-		public var type(get, never):Null<String>; 
-		public function get_type() {
-			return Reflect.field(this, "type");
-		}
+	public var type(get, never):Null<String>; 
+	public function get_type() {
+		return Reflect.field(this, "type");
 	}
 }
