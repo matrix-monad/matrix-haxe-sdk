@@ -21,7 +21,7 @@ class Main {
 			password: '$password'
 		};
 		var user: User = new User("", "", "", "");
-		
+
 		Request.post("/_matrix/client/r0/login", body, function (status, body, header) {
 			switch status {
 				case Success:
@@ -37,7 +37,7 @@ class Main {
 
 	static function sendMessage(user: User, roomID: String, message: String): User {
 		var body = {
-			msgtype: "m.text", 
+			msgtype: "m.text",
 			body: '$message'
 		};
 

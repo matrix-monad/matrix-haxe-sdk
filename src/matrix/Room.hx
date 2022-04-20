@@ -1,15 +1,15 @@
-package matrix; 
+package matrix;
 
-import tink.core.Signal; 
+import tink.core.Signal;
 
 class Room {
-	public var onMessage(default, null):Signal<Dynamic>; // TODO: Message type 
+	public var onMessage(default, null):Signal<Dynamic>; // TODO: Message type
 	var messageTrigger:SignalTrigger<Dynamic>;
-	public var creator:String; 
+	public var creator:String;
 	public var federates:Bool;
 	public var predecessor:Null<Room>;
 	public var version:String;
-	public var type:Null<String>; 
+	public var type:Null<String>;
 
 	public function new(options:RoomOptions) {
 		creator = options.creator;
