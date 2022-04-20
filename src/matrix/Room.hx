@@ -54,3 +54,4 @@ abstract RoomOptions(Dynamic) from Dynamic {
 			return Reflect.field(this, "type");
 		}
 	}
+}
