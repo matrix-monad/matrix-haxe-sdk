@@ -13,45 +13,23 @@ class Room {
 
 	public function new(options:RoomOptions) {
 		creator = options.creator;
-		federates = options.federates;
+		federates = options.mFederate;
 		predecessor = options.predecessor;
-		version = options.version;
+		version = options.roomVersion;
 		type = options.type;
 	}
 
 }
 
+@:build(internal.JsonBuilder.build())
 abstract RoomOptions(Dynamic) from Dynamic {
-	public function new (dyn:Dynamic) {
-		if (!Reflect.isObject(dyn) || !Reflect.hasField(dyn, "creator")) {
-			// todo: handle gracefully
-			throw "Invalid room object";
-		}
-		this = dyn;
-	}
+	final creator:String;
+	final type:Null<String>;
+	final predecessor:Null<Room>;
 
-	public var creator(get, never):String;
-	public function get_creator():String {
-		return Reflect.field(this, "creator");
-	}
+	@:name("room_version")
+	final roomVersion:String = "1";
 
-	public var federates(get, never):Bool; 
-	public function get_federates():Bool {
-		return if (Reflect.hasField(this, "m.federate"))  Reflect.field(this, "m.federate") else true;
-	}
-
-	public var predecessor(get,never):Null<Room>;
-	public function get_predecessor():Null<Room> { 
-		return Reflect.field(this, "predecessor");
-	}
-
-	public var version(get, never):String;
-	public function get_version() {
-		return if (Reflect.hasField(this, "room_version"))  Reflect.field(this, "room_version") else "1";
-	}
-
-	public var type(get, never):Null<String>; 
-	public function get_type() {
-		return Reflect.field(this, "type");
-	}
+	@:name("m.federate")
+	final mFederate:Bool = true;
 }
