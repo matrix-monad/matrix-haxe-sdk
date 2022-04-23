@@ -37,3 +37,9 @@
 	path = vendor/tink_chunk
 	url = https://github.com/haxetink/tink_chunk
 	branch = tags/0.4.0
+[submodule "vendor/json2object"]
+	path = vendor/json2object
+	url = https://github.com/elnabo/json2object/
+[submodule "vendor/hxjsonast"]
+	path = vendor/hxjsonast
+	url = https://github.com/nadako/hxjsonast/

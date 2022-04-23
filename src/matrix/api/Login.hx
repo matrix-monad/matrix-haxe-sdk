@@ -2,6 +2,7 @@ package matrix.api;
 
 import tink.http.Client.fetch;
 import tink.http.Header.HeaderField;
+import json2object.JsonParser;
 import internal.Request;
 
 class Login {
@@ -10,13 +11,16 @@ class Login {
 		var access_token:String;
 		var home_server:String;
 		var device_id:String;
-		// TODO: var well_known:WellKnown;
+		var well_known:WellKnown;
 	}
 
-	/*
 	typedef WellKnown = {
+		@:alias("m.homeserver") var m_homeserver:MHomeServer;
 	}
-	*/
+
+	typedef MHomeServer = {
+		var base_url:String;
+	}
 
 	static function withPassword(username:String, password:String):Login {
 		var body = {
