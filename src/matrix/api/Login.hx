@@ -38,7 +38,9 @@ class Login {
 		Request.post("/_matrix/client/r0/login", body, function (status, body, header) {
 			switch status {
 				case Success:
-					login = haxe.Json.parse(body.toString());
+					var parser = new json2object.JsonParser<LoginResponse>();
+					parser.fromJson(body.toString());
+					login = parser.value;
 				case Error:
 					trace(body);
 			}
