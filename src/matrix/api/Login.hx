@@ -5,24 +5,24 @@ import tink.http.Header.HeaderField;
 import json2object.JsonParser;
 import internal.Request;
 
+typedef LoginResponse = {
+	var user_id:String;
+	var access_token:String;
+	var home_server:String;
+	var device_id:String;
+	var well_known:WellKnown;
+}
+
+typedef WellKnown = {
+	@:alias("m.homeserver") var m_homeserver:MHomeServer;
+}
+
+typedef MHomeServer = {
+	var base_url:String;
+}
+
 class Login {
-	typedef Login = {
-		var user_id:String;
-		var access_token:String;
-		var home_server:String;
-		var device_id:String;
-		var well_known:WellKnown;
-	}
-
-	typedef WellKnown = {
-		@:alias("m.homeserver") var m_homeserver:MHomeServer;
-	}
-
-	typedef MHomeServer = {
-		var base_url:String;
-	}
-
-	static function withPassword(username:String, password:String):Login {
+	static public function withPassword(username:String, password:String):LoginResponse {
 		var body = {
 			type: "m.login.password",
 			identifier: {
@@ -32,7 +32,8 @@ class Login {
 			password: '$password'
 		};
 
-		var login:Login;
+		// Set loginResponse to something temporary
+		var login:LoginResponse = {user_id:"",access_token:"",home_server:"",device_id:"",well_known:{m_homeserver:{base_url:""}}};
 
 		Request.post("/_matrix/client/r0/login", body, function (status, body, header) {
 			switch status {
